@@ -3,13 +3,13 @@ const Movie = require('../models/movie');
 
 exports.getMovie = async (req, res, next) => {
   try {
-    const movies = await Movie.find().limit(20);
+    const movie = await Movie.find().limit(20);
 
-    if (!movies) {
+    if (!movie) {
       res.status(404).json({ message: 'Movies not found!' });
     }
 
-    res.status(200).json({ message: 'Movies found!', movies: movies });
+    res.status(200).json({ message: 'Movies found!', movies: movie });
   } catch (error) {
     next(error);
   }
@@ -19,13 +19,13 @@ exports.getMovieById = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const movies = await Movie.findOne({ movie_id: Number(id) });
+    const movie = await Movie.findOne({ movie_id: Number(id) });
 
-    if (!movies) {
+    if (!movie) {
       res.status(404).json({ message: 'Movies not found!' });
     }
 
-    res.status(200).json({ message: 'Movies found!', movie: movies });
+    res.status(200).json({ message: 'Movies found!', movie: movie });
   } catch (error) {
     next(error);
   }
